@@ -1,0 +1,278 @@
+Microsoft Windows [versão 10.0.26100.3775]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\sophia> cd C:\xampp\mysql\bin
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 50
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| etecmcm2           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]> USE ETECMCM2;
+Database changed
+MariaDB [ETECMCM2]> SHOW TABLES;
++--------------------+
+| Tables_in_etecmcm2 |
++--------------------+
+| categorias         |
+| produtos           |
++--------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [ETECMCM2]> SELECT * FROM categorias;
++--------------+------------+
+| id_categoria | nome_cat   |
++--------------+------------+
+|            1 | laticínios |
+|            2 | higiene    |
+|            3 | limpeza    |
+|            4 | frios      |
+|            5 | enlatados  |
+|            7 | laticínios |
++--------------+------------+
+6 rows in set (0.002 sec)
+
+MariaDB [ETECMCM2]> SELECT * FROM produtos;
++------------+-------------+-------+-------+------------+--------------+
+| id_produto | nome        | preco | quant | marca      | id_categoria |
++------------+-------------+-------+-------+------------+--------------+
+|          1 | Iogurte     |  5.50 |    50 | Danone     |            1 |
+|          2 | Mussarela   | 50.00 |    15 | Presidente |            1 |
+|          3 | sabao em po | 30.50 |    50 | OMO        |            1 |
+|          4 | detergente  |  3.55 |    10 | Ype        |            1 |
++------------+-------------+-------+-------+------------+--------------+
+4 rows in set (0.002 sec)
+
+MariaDB [ETECMCM2]> SELECT * FROM produtos WHERE nome = 'laticínios';
+Empty set (0.001 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Creme de leite', 10.50, 10, 'Nestle', 1);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Chocolate', 12.50, 14, 'Lacta', 1);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Leite', 18.00, 8, 'Italac', 1);
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Achocolatado', 62.00, 10, 'Toddy', 1);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Manteiga', 18.00, 12, 'Aviação', 7);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Chocolate', 13.00, 90, 'Lacta', 7);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Margarina', 10.00, 34, 'Qualy', 7);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Sorvete', 16.00, 80, 'Kbom', 7);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Leite condensado', 50.00, 2, 'Moça', 7);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Presunto', 60.00, 94, 'Seara', 4);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Mortadela', 90.00, 2, 'Seara', 4);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Rosbife', 10.00, 70, 'Limbo', 4);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+VALUES ('Rosbi...' at line 2
+MariaDB [ETECMCM2]> VALUES ('Rosbife', 10.00, 70, 'Limbo', 4);
++---------+-------+----+-------+---+
+| Rosbife | 10.00 | 70 | Limbo | 4 |
++---------+-------+----+-------+---+
+| Rosbife | 10.00 | 70 | Limbo | 4 |
++---------+-------+----+-------+---+
+1 row in set (0.000 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Salame', 42.50, 84, 'Seara', 4);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Salsicha', 1.00, 40, 'Seara', 4);
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Papel higienico', 12.00, 74, 'Dama', 2);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Absorvente', 9.00, 40, 'sempre livre', 2);
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Fralda', 23.00, 30, 'Pumpers', 2);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Sabonete', 3.00, 9, 'Dove', 2);
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Desodorante', 45.00, 20, 'Rexona', 2);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Sabonete', 3.00, 9, 'Dove', 2);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Cloro', 13.00, 34, 'Ype', 3);
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Pinho sol', 1.00, 3, 'Ype', 3);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Amaciante', 20.00, 20, 'Minuano', 3);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Atum', 1.00, 3, 'Coqueiro', 5);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Sardinha', 13.00, 14, 'Costa alta', 5);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Milho verde', 2.00, 5, 'Quero', 5);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Ervilha', 6.00, 23, 'Quero', 5);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> INSERT INTO produtos (nome, preco, quant, marca, id_categoria)
+    -> VALUES ('Molho de tomate', 4.00, 46, 'Elefante', 5);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [ETECMCM2]> SHOW TABLE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [ETECMCM2]> SHOW TABLES;
++--------------------+
+| Tables_in_etecmcm2 |
++--------------------+
+| categorias         |
+| produtos           |
++--------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [ETECMCM2]> SELECT * FROM produtos;
++------------+------------------+-------+-------+--------------+--------------+
+| id_produto | nome             | preco | quant | marca        | id_categoria |
++------------+------------------+-------+-------+--------------+--------------+
+|          1 | Iogurte          |  5.50 |    50 | Danone       |            1 |
+|          2 | Mussarela        | 50.00 |    15 | Presidente   |            1 |
+|          3 | sabao em po      | 30.50 |    50 | OMO          |            1 |
+|          4 | detergente       |  3.55 |    10 | Ype          |            1 |
+|          5 | Creme de leite   | 10.50 |    10 | Nestle       |            1 |
+|          6 | Chocolate        | 12.50 |    14 | Lacta        |            1 |
+|          7 | Leite            | 18.00 |     8 | Italac       |            1 |
+|          8 | Achocolatado     | 62.00 |    10 | Toddy        |            1 |
+|          9 | Manteiga         | 18.00 |    12 | Aviação      |            7 |
+|         10 | Chocolate        | 13.00 |    90 | Lacta        |            7 |
+|         11 | Margarina        | 10.00 |    34 | Qualy        |            7 |
+|         12 | Sorvete          | 16.00 |    80 | Kbom         |            7 |
+|         13 | Leite condensado | 50.00 |     2 | Moça         |            7 |
+|         14 | Presunto         | 60.00 |    94 | Seara        |            4 |
+|         15 | Mortadela        | 90.00 |     2 | Seara        |            4 |
+|         16 | Salame           | 42.50 |    84 | Seara        |            4 |
+|         17 | Salsicha         |  1.00 |    40 | Seara        |            4 |
+|         18 | Papel higienico  | 12.00 |    74 | Dama         |            2 |
+|         19 | Absorvente       |  9.00 |    40 | sempre livre |            2 |
+|         20 | Fralda           | 23.00 |    30 | Pumpers      |            2 |
+|         21 | Sabonete         |  3.00 |     9 | Dove         |            2 |
+|         22 | Desodorante      | 45.00 |    20 | Rexona       |            2 |
+|         23 | Sabonete         |  3.00 |     9 | Dove         |            2 |
+|         24 | Cloro            | 13.00 |    34 | Ype          |            3 |
+|         25 | Pinho sol        |  1.00 |     3 | Ype          |            3 |
+|         26 | Amaciante        | 20.00 |    20 | Minuano      |            3 |
+|         27 | Atum             |  1.00 |     3 | Coqueiro     |            5 |
+|         28 | Sardinha         | 13.00 |    14 | Costa alta   |            5 |
+|         29 | Milho verde      |  2.00 |     5 | Quero        |            5 |
+|         30 | Ervilha          |  6.00 |    23 | Quero        |            5 |
+|         31 | Molho de tomate  |  4.00 |    46 | Elefante     |            5 |
++------------+------------------+-------+-------+--------------+--------------+
+31 rows in set (0.001 sec)
+
+MariaDB [ETECMCM2]> alter table produtos add unidade_medida varchar(10);
+Query OK, 0 rows affected (0.011 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [ETECMCM2]> SELECT * FROM produtos;
++------------+------------------+-------+-------+--------------+--------------+----------------+
+| id_produto | nome             | preco | quant | marca        | id_categoria | unidade_medida |
++------------+------------------+-------+-------+--------------+--------------+----------------+
+|          1 | Iogurte          |  5.50 |    50 | Danone       |            1 | NULL           |
+|          2 | Mussarela        | 50.00 |    15 | Presidente   |            1 | NULL           |
+|          3 | sabao em po      | 30.50 |    50 | OMO          |            1 | NULL           |
+|          4 | detergente       |  3.55 |    10 | Ype          |            1 | NULL           |
+|          5 | Creme de leite   | 10.50 |    10 | Nestle       |            1 | NULL           |
+|          6 | Chocolate        | 12.50 |    14 | Lacta        |            1 | NULL           |
+|          7 | Leite            | 18.00 |     8 | Italac       |            1 | NULL           |
+|          8 | Achocolatado     | 62.00 |    10 | Toddy        |            1 | NULL           |
+|          9 | Manteiga         | 18.00 |    12 | Aviação      |            7 | NULL           |
+|         10 | Chocolate        | 13.00 |    90 | Lacta        |            7 | NULL           |
+|         11 | Margarina        | 10.00 |    34 | Qualy        |            7 | NULL           |
+|         12 | Sorvete          | 16.00 |    80 | Kbom         |            7 | NULL           |
+|         13 | Leite condensado | 50.00 |     2 | Moça         |            7 | NULL           |
+|         14 | Presunto         | 60.00 |    94 | Seara        |            4 | NULL           |
+|         15 | Mortadela        | 90.00 |     2 | Seara        |            4 | NULL           |
+|         16 | Salame           | 42.50 |    84 | Seara        |            4 | NULL           |
+|         17 | Salsicha         |  1.00 |    40 | Seara        |            4 | NULL           |
+|         18 | Papel higienico  | 12.00 |    74 | Dama         |            2 | NULL           |
+|         19 | Absorvente       |  9.00 |    40 | sempre livre |            2 | NULL           |
+|         20 | Fralda           | 23.00 |    30 | Pumpers      |            2 | NULL           |
+|         21 | Sabonete         |  3.00 |     9 | Dove         |            2 | NULL           |
+|         22 | Desodorante      | 45.00 |    20 | Rexona       |            2 | NULL           |
+|         23 | Sabonete         |  3.00 |     9 | Dove         |            2 | NULL           |
+|         24 | Cloro            | 13.00 |    34 | Ype          |            3 | NULL           |
+|         25 | Pinho sol        |  1.00 |     3 | Ype          |            3 | NULL           |
+|         26 | Amaciante        | 20.00 |    20 | Minuano      |            3 | NULL           |
+|         27 | Atum             |  1.00 |     3 | Coqueiro     |            5 | NULL           |
+|         28 | Sardinha         | 13.00 |    14 | Costa alta   |            5 | NULL           |
+|         29 | Milho verde      |  2.00 |     5 | Quero        |            5 | NULL           |
+|         30 | Ervilha          |  6.00 |    23 | Quero        |            5 | NULL           |
+|         31 | Molho de tomate  |  4.00 |    46 | Elefante     |            5 | NULL           |
++------------+------------------+-------+-------+--------------+--------------+----------------+
+31 rows in set (0.001 sec)
+
+MariaDB [ETECMCM2]>
