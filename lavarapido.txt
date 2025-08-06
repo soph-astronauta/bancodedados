@@ -1,0 +1,30 @@
+-- marca
+CREATE TABLE marca(
+    idmarca int PRIMARY KEY AUTO_INCREMENT,
+    marca varchar(255)
+    );
+
+-- modelo
+    CREATE TABLE modelo(
+        idmodelo int PRIMARY KEY AUTO_INCREMENT,
+        idmodelo varchar(255)
+        );
+
+-- carro
+CREATE TABLE  carro(
+    idcarro int PRIMARY KEY AUTO_INCREMENT,
+    FOREIGN KEY (modelo) REFERENCES modelo (idcarro)); 
+
+-- atendimento
+CREATE TABLE atendimento(
+    idatendimento int PRIMARY KEY AUTO_INCREMENT,
+    idatendimento decimal(10,2));
+    
+
+-- endereco
+
+-- cliente
+
+-- atendimentoservico
+
+-- servico
